@@ -17,6 +17,7 @@ import jakarta.nosql.mapping.document.DocumentTemplate;
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class App {
 
@@ -27,7 +28,9 @@ public class App {
             DocumentTemplate template = container.select(DocumentTemplate.class).get();
             MeasurementValue measurement = MeasurementValue.of("L", BigDecimal.valueOf(1L));
             Drink drink = new Drink("water", "Bottled water\n", measurement);
-            template.insert(drink);
+           // template.insert(drink);
+            Optional<Drink> water = template.find(Drink.class, "water");
+            System.out.println("The water " + water);
 
         }
     }
