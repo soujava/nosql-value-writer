@@ -25,11 +25,11 @@ public class App2 {
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            DocumentTemplate template = container.select(DocumentTemplate.class).get();
+            DrinkRepository repository = container.select(DrinkRepository.class).get();
             MeasurementValue measurement = MeasurementValue.of("L", BigDecimal.valueOf(1L));
             Drink drink = new Drink("water", "Bottled water\n", measurement);
-           // template.insert(drink);
-            Optional<Drink> water = template.find(Drink.class, "water");
+            repository.save(drink);
+            Optional<Drink> water = repository.findById("water");
             System.out.println("The water " + water);
 
         }
