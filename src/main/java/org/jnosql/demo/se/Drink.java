@@ -19,6 +19,15 @@ public class Drink {
     @Column
     private MeasurementValue measurementValue;
 
+    Drink() {
+    }
+
+    public Drink(String id, String name, MeasurementValue measurementValue) {
+        this.id = id;
+        this.name = name;
+        this.measurementValue = measurementValue;
+    }
+
     public String getId() {
         return id;
     }
