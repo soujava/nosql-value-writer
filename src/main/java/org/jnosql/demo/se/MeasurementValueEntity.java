@@ -42,8 +42,21 @@ public class MeasurementValueEntity {
 
     @Override
     public String toString() {
-        return unit + " " + value;
+        return value + " " + unit;
     }
 
+    public static MeasurementValueEntity of(String unit, BigDecimal value) {
+        Objects.requireNonNull(unit, "unit is required");
+        Objects.requireNonNull(value, "value is required");
+        return new MeasurementValueEntity(unit, value);
+    }
+
+    public static MeasurementValueEntity parser(String text){
+        Objects.requireNonNull(text, "text is required");
+        String[] values = text.split("\\s+");
+        String unit = values[0];
+        BigDecimal value = BigDecimal.valueOf(Double.valueOf(values[1]));
+        return of(unit, value);
+    }
 
 }
