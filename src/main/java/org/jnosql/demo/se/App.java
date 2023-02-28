@@ -12,8 +12,11 @@
 package org.jnosql.demo.se;
 
 
+import jakarta.nosql.mapping.document.DocumentTemplate;
+
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
+import java.math.BigDecimal;
 
 public class App {
 
@@ -21,7 +24,10 @@ public class App {
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-
+            DocumentTemplate template = container.select(DocumentTemplate.class).get();
+            MeasurementValue measurement = MeasurementValue.of("L", BigDecimal.valueOf(1L));
+            Drink drink = new Drink("water", "Bottled water\n", measurement);
+            template.insert(drink);
 
         }
     }
