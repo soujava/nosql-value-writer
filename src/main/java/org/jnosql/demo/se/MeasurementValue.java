@@ -54,8 +54,8 @@ public class MeasurementValue {
     public static MeasurementValue parser(String text){
         Objects.requireNonNull(text, "text is required");
         String[] values = text.split("\\s+");
-        String unit = values[0];
-        BigDecimal value = BigDecimal.valueOf(Double.valueOf(values[1]));
+        String unit = values[1];
+        BigDecimal value = BigDecimal.valueOf(Double.valueOf(values[0]));
         return of(unit, value);
     }
 
