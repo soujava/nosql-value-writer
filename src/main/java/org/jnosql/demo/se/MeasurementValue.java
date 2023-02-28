@@ -3,13 +3,13 @@ package org.jnosql.demo.se;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class MeasurementValueEntity {
+public class MeasurementValue {
 
     private final String unit;
 
     private final BigDecimal value;
 
-    private MeasurementValueEntity(String unit, BigDecimal value) {
+    private MeasurementValue(String unit, BigDecimal value) {
         this.unit = unit;
         this.value = value;
     }
@@ -31,7 +31,7 @@ public class MeasurementValueEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        MeasurementValueEntity that = (MeasurementValueEntity) o;
+        MeasurementValue that = (MeasurementValue) o;
         return Objects.equals(unit, that.unit) && Objects.equals(value, that.value);
     }
 
@@ -45,13 +45,13 @@ public class MeasurementValueEntity {
         return value + " " + unit;
     }
 
-    public static MeasurementValueEntity of(String unit, BigDecimal value) {
+    public static MeasurementValue of(String unit, BigDecimal value) {
         Objects.requireNonNull(unit, "unit is required");
         Objects.requireNonNull(value, "value is required");
-        return new MeasurementValueEntity(unit, value);
+        return new MeasurementValue(unit, value);
     }
 
-    public static MeasurementValueEntity parser(String text){
+    public static MeasurementValue parser(String text){
         Objects.requireNonNull(text, "text is required");
         String[] values = text.split("\\s+");
         String unit = values[0];
