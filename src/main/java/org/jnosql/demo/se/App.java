@@ -28,28 +28,8 @@ public class App {
 
     public static void main(String[] args) {
 
-        Random random = new Random();
-        long id = random.nextLong();
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
 
-            Address address = new Address("Av nove de julho", "São Paulo");
-            Job job = new Job(12.12, "Developer");
-            Person person = Person.builder().
-                    withPhones(Arrays.asList("234", "432"))
-                    .withName("Name")
-                    .withAddress(address)
-                    .withJob(job)
-                    .withId(id).build();
-            DocumentTemplate template = container.select(DocumentTemplate.class).get();
-            Person saved = template.insert(person);
-            System.out.println("Person saved" + saved);
-
-
-            DocumentQuery query = select().from("Person")
-                    .where("_id").eq(id).build();
-
-            Optional<Person> personOptional = template.singleResult(query);
-            System.out.println("Entity found: " + personOptional);
 
         }
     }
